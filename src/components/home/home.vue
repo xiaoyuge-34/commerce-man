@@ -105,7 +105,17 @@
 
 <script>
 export default {
-
+  // newVue之前自动触发
+  deforeCreate () {
+    // 获取token
+    const token = localStorage.getItem('token')
+    // 判断是否有token
+    if (!token) {
+      // 没有token，返回登录
+      this.$route.push({ name: 'login' })
+    }
+    // 如果有token，继续渲染组件
+  }
 }
 
 </script>
