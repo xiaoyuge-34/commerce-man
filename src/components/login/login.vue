@@ -24,25 +24,44 @@ export default {
     }
   },
   methods: {
-    handleLogin () {
-      this.$http.post('login', this.formdata).then(res => {
-        // console.log(res)
-        const {
-          data,
-          meta: { msg, status }
-        } = res.data
-        console.log(data)
-        // 提示信息
-        if (status === 200) {
-          // 登录成功
-          // 跳转home
-          // this.$router.push({ name: 'home' })
-          // 提示成功
-          this.$message.success(msg)
-        } else {
-          this.$message.warning(msg)
-        }
-      })
+    async handleLogin () {
+      // es7 async+await
+      const res = await this.$http.post('login', this.formdata)
+      // console.log(res)
+      const {
+        data,
+        meta: { msg, status }
+      } = res.data
+      console.log(data)
+      // 提示信息
+      if (status === 200) {
+        // 登录成功
+        // 跳转home
+        this.$router.push({ name: 'home' })
+        // 提示成功
+        this.$message.success(msg)
+      } else {
+        this.$message.warning(msg)
+      }
+
+      // this.$http.post('login', this.formdata).then(res => {
+      //   // console.log(res)
+      //   const {
+      //     data,
+      //     meta: { msg, status }
+      //   } = res.data
+      //   console.log(data)
+      //   // 提示信息
+      //   if (status === 200) {
+      //     // 登录成功
+      //     // 跳转home
+      //     this.$router.push({ name: 'home' })
+      //     // 提示成功
+      //     this.$message.success(msg)
+      //   } else {
+      //     this.$message.warning(msg)
+      //   }
+      // })
     }
   }
 }
