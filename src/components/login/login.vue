@@ -32,10 +32,11 @@ export default {
         data,
         meta: { msg, status }
       } = res.data
-      console.log(data)
       // 提示信息
       if (status === 200) {
         // 登录成功
+        // 保存token值
+        localStorage.setItem('token', data.token)
         // 跳转home
         this.$router.push({ name: 'home' })
         // 提示成功
@@ -54,6 +55,8 @@ export default {
       //   // 提示信息
       //   if (status === 200) {
       //     // 登录成功
+      //    // 保存token值
+      //     localStorage.setItem('token', data.token)
       //     // 跳转home
       //     this.$router.push({ name: 'home' })
       //     // 提示成功
