@@ -12,7 +12,7 @@
         </el-col>
         <el-col :span="2">
           <div class="grid-content bg-purple">
-            <a class="loginout">退出</a>
+            <a class="loginout" @click="handleSignout()">退出</a>
           </div>
         </el-col>
       </el-row>
@@ -115,6 +115,16 @@ export default {
       this.$route.push({ name: 'login' })
     }
     // 如果有token，继续渲染组件
+  },
+  methods: {
+    handleSignout () {
+      // 清除token
+      localStorage.clear()
+      // 提示
+      this.$message.success('退出成功')
+      // 来到login页面
+      this.$router.push({ name: 'login' })
+    }
   }
 }
 
@@ -134,6 +144,7 @@ export default {
       .loginout {
         line-height: 60px;
         text-decoration: none;
+        cursor: pointer;
       }
     }
 
